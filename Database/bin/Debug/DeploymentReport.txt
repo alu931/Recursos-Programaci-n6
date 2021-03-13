@@ -1,0 +1,26 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Empleado] (Table)
+       [dbo].[Empresa] (Table)
+       [dbo].[TipoIdentificacion] (Table)
+       [dbo].[DF_Empleado_Estado] (Default Constraint)
+       [dbo].[DF_Empresa_Estado] (Default Constraint)
+       [dbo].[DF_TipoIdentificacion_Estado] (Default Constraint)
+       [dbo].[FK_Empleado_TipoIdentificacion] (Foreign Key)
+       [dbo].[FK_Empleado_Empresa] (Foreign Key)
+       [dbo].[CHK_Empleado_Edad] (Check Constraint)
+       [dbo].[CHK_Empleado_Sexo] (Check Constraint)
+       [dbo].[EmpresaInsertar] (Procedure)
+       [dbo].[EmpresasObtener] (Procedure)
+
+** Supporting actions

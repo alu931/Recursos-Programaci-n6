@@ -1,0 +1,97 @@
+﻿@model List<Entity.TipoIdentificacionEntity>
+@*@{
+        Layout = null;
+    }*@
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>*@
+
+@if (ViewData.ContainsKey("msg"))
+{
+
+    <script>
+        alert("@ViewData["msg"]");
+    </script>
+
+
+}
+
+
+
+<div class="container-fluid">
+    <h1>Tipos Identificación</h1>
+    <div class="row">
+
+        <div class="col-3">
+            <button type="button" class="btn btn-outline-primary" onclick="ClickNew()"><i class='bx bx-add-to-queue'></i></button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-dark table-stripped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id Tipo Identificacion</th>
+                        <th>Descripcion</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IdTipoIdentificacion</td>
+                            <td>@item.Descripcion</td>
+                            <td>@(item.Estado ? "Activo" : "Inactivo")</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary" onclick="ClickUpdate(@item.IdTipoIdentificacion)"><i class='bx bx-edit-alt'></i></button>
+                                <button type="button" class="btn btn-outline-primary" onclick="ClickDelete(@item.IdTipoIdentificacion)"><i class='bx bx-trash'></i></button>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+@section scripts{
+
+    <script>
+
+        var ClickNew = function () {
+            window.location.href = "TipoIdentificacion/Edit";
+        }
+
+        var ClickUpdate = function (id) {
+            window.location.href = "TipoIdentificacion/Edit/" + id;
+        }
+
+        var ClickDelete = function (id) {
+
+            var result = confirm("Esta seguro que desea eliminar el registro?");
+            if (result) window.location.href = "TipoIdentificacion/Delete/" + id;
+        }
+
+    </script>
+
+
+
+}
+
+@*</body>*@
+<!--</html>-->

@@ -1,0 +1,121 @@
+﻿@model WebMvcLab1.Models.EmpleadoEdit
+
+@using Newtonsoft.Json;
+
+@{
+
+    var TypeForm = ViewBag.Form as bool?;
+}
+
+<model data-entity="@JsonConvert.SerializeObject(Model.empleado)" />
+<div id="EmpleadoEdit" class="container">
+
+    <div class="row" v-if="true">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@(TypeForm.Value? "Edita Empleado":"Nuevo Empleado")</h4>
+                    <form id="FormEmpleado" >
+
+                        <input type="hidden" name="IdEmpresa" v-model="model.IdEmpleado" />
+
+                        <div class="form-floating mb-3">
+
+                            <div class="form-floating mb-3 form-group">
+                                <input class="form-control" type="text" name="NombreEmpleado" id="NombreEmpleado" v-model="model.NombreEmpleado" required />
+                                <label for="NombreEmpleado"> Empleado</label>
+                            </div>
+
+                            <div class="form-floating mb-3 form-group">
+                                <select class="form-control" name="TipoIdentificacion" id="TipoIdentificacion" aria-label="Default select example" v-model="model.IdTipoIdentificacion" required>
+                                    @foreach (var item in Model.ddlTipoIdentificacion)
+                                    {
+                                        <option value="@item.IdTipoIdentificacion">@item.Descripcion</option>
+
+                                    }
+
+                                </select>
+
+                                <label for="TipoIdentificacion">Tipo Identificacion</label>
+                            </div>
+
+                            <div class="form-floating mb-3 form-group">
+                                <select class="form-control" name="Empresa" id="Empresa" aria-label="Default select example" v-model="model.IdEmpresa" required>
+                                    @foreach (var item in Model.ddlEmpresa)
+                                    {
+                                        <option value="@item.IdEmpresa">@item.NombreEmpresa</option>
+
+                                    }
+
+                                </select>
+                                <label for="TipoIdentificacion">Empresa</label>
+                            </div>
+
+                            <div class="form-floating mb-3 form-group">
+                                <input class="form-control" type="text" name="Identificacion" id="Identificacion" v-model="model.Identificacion" required />
+                                <label for="Identificacion"> Identificación</label>
+                            </div>
+
+                            <div class="form-floating mb-3 form-group">
+                                <input class="form-control" type="text" name="Edad" id="Edad" v-model="model.Edad" min="18"
+                                       data-bv-greaterthan-message="La edad del empleado debe ser mayor a 18" required />
+                                <label for="Edad"> Edad</label>
+                            </div>
+
+
+                            <div class="form-floating mb-3 form-group">
+                                <select class="form-select" name="Sexo" id="Sexo" aria-label="Default select example" v-model="model.Sexo" required>
+
+                                    <option value="F">Femenino</option>
+
+                                    <option value="M">Masculino</option>
+
+                                </select>
+                                <label for="Sexo"> Sexo</label>
+                            </div>
+
+                            <div class="form-check form-group">
+                                <input class="form-check-input" type="checkbox" id="TieneVehiculo" name="TieneVehiculo" v-model="model.TieneVehiculo" />
+                                <label class="form-check-label" for="TieneVehiculo">
+                                    Tiene Vehiculo?
+                                </label>
+                            </div>
+
+                            <div class="form-floating mb-3 form-group" v-if="model.TieneVehiculo">
+                                <input class="form-control" type="text" name="Vehiculos" id="Vehiculos" v-model="model.Vehiculos" required/>
+                                <label for="Vehiculos"> Cuales vehiculos tiene</label>
+                            </div>
+
+
+                            <div class="form-check form-group">
+                                <input class="form-check-input" type="checkbox" id="Estado" name="Estado" v-model="model.Estado" />
+                                <label class="form-check-label" for="Estado">
+                                    Estado
+                                </label>
+                            </div>
+
+
+                            <div class="mb-3">
+                                @if (TypeForm.Value)
+                                {
+                                    <button type="button" @@Click="Save" class="btn btn-outline-primary"><i class='bx bx-edit-alt'></i></button>
+
+                                }
+                                else
+                                {
+                                    <button type="button" @@Click="Save" class="btn btn-outline-primary"><i class='bx bx-save'></i></button>
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/Empleado/Edit.js"></script>
+}

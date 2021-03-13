@@ -1,0 +1,55 @@
+﻿
+@model Entity.TipoIdentificacionEntity
+
+@{
+    var TypeForm = ViewBag.Form as bool?;
+
+}
+<div class="container">
+
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@(TypeForm.Value ? "Editar Tipo Identificación": "Nuevo Tipo Identificación")</h4>
+                    <form action="/TipoIdentificacion/Save" method="post">
+
+                        <input type="hidden" name="IdTipoIdentificacion" id="IdTipoIdentificacion" value="@Model.IdTipoIdentificacion" />
+
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" name="Descripcion" id="Descripcion" value="@Model.Descripcion" />
+                            <label for="Descripcion">Descripcion</label>
+                            <br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="true" id="Estado" name="Estado" @(Model.Estado ? "checked" : "")>
+                                <label class="form-check-label" for="Estado">
+                                    Estado
+                                </label>
+                            </div>
+                            <br />
+                            <div class="mb-3">
+                                @if (TypeForm.Value)
+                                {
+                                    <button type="submit" class="btn btn-outline-primary"><i class='bx bx-edit-alt'></i></button>
+                                }
+                                else
+                                {
+
+                                    <button type="submit" class="btn btn-outline-primary"><i class='bx bx-save'></i></button>
+                                }
+
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
